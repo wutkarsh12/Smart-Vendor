@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import {Dialog,Box,TextField,Typography,Button,styled} from '@mui/material';
-import {authenticateSignup} from '../..service/api';
+import {authenticateSignup} from '../../service/api';
 
 const Component=styled(Box)`
 height:70vh;
@@ -89,6 +89,8 @@ const LoginDialog=({open,setOpen})=>{
     }
     const signupUser=async()=>{
         let response =await authenticateSignup(signup);
+        if(!response)return;
+        handleClose();
     }
 
     return(
