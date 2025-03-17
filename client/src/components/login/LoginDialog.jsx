@@ -107,7 +107,7 @@ const LoginDialog=({open,setOpen})=>{
                     <TextField variant="standard" label="Enter Password"/>
                     <Text>By continuing, you agree to Smart Vendor's Terms of Use and Privacy Policy.</Text>
                     <LoginButton>Login</LoginButton>
-                    <Typography style={{textAlign:'center'}}>OR</Typography>
+                        <Typography style={{textAlign:'center'}}>OR</Typography>
                     <RequestOTP>Request OTP</RequestOTP>
                     <CreateAccount onClick={()=>toggleSignup()}> New to Smart Vendor? Create an Account</CreateAccount>
                 </Wrapper>
