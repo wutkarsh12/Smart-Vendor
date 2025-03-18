@@ -1,6 +1,6 @@
 import {useState,useContext} from 'react';
 import {Dialog,Box,TextField,Typography,Button,styled} from '@mui/material';
-import {authenticateSignup} from '../../service/api';
+import {authenticateSignup,authenticateLogin} from '../../service/api';
 import {DataContext} from '../../context/DataProvider';
 
 const Component=styled(Box)`
@@ -75,10 +75,17 @@ const signupInitialValues={
     phone:''
 }
 
+constloginInitialValues={
+    username:'',
+    password:''
+}
 const LoginDialog=({open,setOpen})=>{
     const [account,toggleAccount]=useState(accountInitialValues.login);
     const [signup,setSignup]=useState(signupInitialValues);
+    const [login,setLogin]=useState(loginInitialValues);
+
     const {setAccount}=useContext(DataContext);
+
     const handleClose=()=>{
         setOpen(false);
         toggleAccount(accountInitialValues.login);
@@ -95,6 +102,13 @@ const LoginDialog=({open,setOpen})=>{
         handleClose();
         setAccount(signup.firstname);
     }
+    const onValueChange=(e)=>{
+        setLogin({...login,[e.target.name]:e.target.value});
+    }
+    const loginUser=async()=>{
+        let response= await authenticateLogin(login);
+        console.login(response);
+    }
 
     return(
         <Dialog open={open} onClose={handleClose} slotProps={{paper:{sx:{maxWidth:'unset'}}}}>
@@ -106,10 +120,10 @@ const LoginDialog=({open,setOpen})=>{
                 </Image>
                 {account.view ==='login' ?
                     <Wrapper>
-                    <TextField variant="standard" label="Enter Email/Mobile Number"/>
-                    <TextField variant="standard" label="Enter Password"/>
+                    <TextField variant="standard" onChange={(e)=>onValueChange(e)} name='username' label="Enter Email/Mobile Number"/>
+                    <TextField variant="standard" onChange={(e)=>onValueChange(e)} name='password' label="Enter Password"/>
                     <Text>By continuing, you agree to Smart Vendor's Terms of Use and Privacy Policy.</Text>
-                    <LoginButton>Login</LoginButton>
+                    <LoginButton onClick={()=>loginUser()}>Login</LoginButton>
                         <Typography style={{textAlign:'center'}}>OR</Typography>
                     <RequestOTP>Request OTP</RequestOTP>
                     <CreateAccount onClick={()=>toggleSignup()}> New to Smart Vendor? Create an Account</CreateAccount>
