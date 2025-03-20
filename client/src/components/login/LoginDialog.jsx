@@ -107,10 +107,10 @@ const LoginDialog=({open,setOpen})=>{
     }
     const loginUser=async()=>{
         let response= await authenticateLogin(login);
-        console.login(response);
+        console.log(response);
         if(response.status===200){
             handleClose();
-            setAccount(login.username);
+            setAccount(response.data.data.firstname);
         }
     }
 
