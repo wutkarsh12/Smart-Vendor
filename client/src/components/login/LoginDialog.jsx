@@ -75,7 +75,7 @@ const signupInitialValues={
     phone:''
 }
 
-constloginInitialValues={
+const loginInitialValues={
     username:'',
     password:''
 }
@@ -108,6 +108,10 @@ const LoginDialog=({open,setOpen})=>{
     const loginUser=async()=>{
         let response= await authenticateLogin(login);
         console.login(response);
+        if(response.status===200){
+            handleClose();
+            setAccount(login.username);
+        }
     }
 
     return(
