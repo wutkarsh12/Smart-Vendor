@@ -75,7 +75,7 @@ const signupInitialValues={
     phone:''
 }
 
-constloginInitialValues={
+const loginInitialValues={
     username:'',
     password:''
 }
