@@ -16,8 +16,11 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-multi-carousel": "^2.8.5",
-    "react-scripts": "5.0.1",
+    "react-redux": "^9.2.0",
+    "react-scripts": "^3.0.1",
+    "redux": "^5.0.1",
     "styled-components": "^6.1.15",
+    "thunk": "^0.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
