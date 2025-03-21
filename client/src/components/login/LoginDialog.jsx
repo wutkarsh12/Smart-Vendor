@@ -53,6 +53,14 @@ color:#1D1D1D;
 font-weight:600;
 cursor:pointer;
 `
+const Error=styled(Typography)`
+font-size:10px;
+color:#ff6161;
+line-height:0;
+margin-top:10px;
+font-weight:600;
+`
+
 const accountInitialValues={
     login:{
         view:'login',
@@ -83,6 +91,7 @@ const LoginDialog=({open,setOpen})=>{
     const [account,toggleAccount]=useState(accountInitialValues.login);
     const [signup,setSignup]=useState(signupInitialValues);
     const [login,setLogin]=useState(loginInitialValues);
+    const [error,setError]=useState(false);
 
     const {setAccount}=useContext(DataContext);
 
@@ -108,9 +117,12 @@ const LoginDialog=({open,setOpen})=>{
     const loginUser=async()=>{
         let response= await authenticateLogin(login);
         console.log(response);
+        setError(false);
         if(response.status===200){
             handleClose();
             setAccount(response.data.data.firstname);
+        }else{
+           setError(true); 
         }
     }
 
@@ -124,7 +136,10 @@ const LoginDialog=({open,setOpen})=>{
                 </Image>
                 {account.view ==='login' ?
                     <Wrapper>
-                    <TextField variant="standard" onChange={(e)=>onValueChange(e)} name='username' label="Enter Email/Mobile Number"/>
+                    <TextField variant="standard" onChange={(e)=>onValueChange(e)} name='username' label="Enter Username"/>
+
+                    {error && <Error>Please enter valid username or password</Error>}
+
                     <TextField variant="standard" onChange={(e)=>onValueChange(e)} name='password' label="Enter Password"/>
                     <Text>By continuing, you agree to Smart Vendor's Terms of Use and Privacy Policy.</Text>
                     <LoginButton onClick={()=>loginUser()}>Login</LoginButton>
@@ -140,6 +155,7 @@ const LoginDialog=({open,setOpen})=>{
                     <TextField variant="standard" onChange={(e) => onInputChange(e)}name='email' label="Enter Email"/>
                     <TextField variant="standard" onChange={(e) => onInputChange(e)}name='password' label="Enter Password"/>
                     <TextField variant="standard" onChange={(e) => onInputChange(e)}name='phone' label="Enter PhoneNo"/> 
+                    {error && <Error>Username already exists</Error>}
                     <LoginButton onClick={()=>signupUser()}>Continue</LoginButton>
                 </Wrapper>
                 }
