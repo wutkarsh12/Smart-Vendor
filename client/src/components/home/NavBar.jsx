@@ -1,6 +1,6 @@
 import {Box,styled,Typography} from '@mui/material';
 import {navData} from '../../constants/data';
-import Banner from './Banner';
+
 
 const Component=styled(Box)`
 display:flex;
