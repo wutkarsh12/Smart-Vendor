@@ -2,19 +2,40 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getProductDetails } from "../../redux/actions/productActions";
-import { Box, Typography, Stack, styled } from "@mui/material";
+import { Box,Stack, styled } from "@mui/material";
 import ActionItem from "./ActionItem";
+import ProductDetail from "./ProductDetail";
 
 const Component = styled(Box)`
   background: #F2F2F2;
   margin-top:55px;
 `;
-const Container=styled(Stack)`
-background:#FFFFFF;
-display:flex;`
+const Container = styled(Stack)(({ theme }) => ({
+  background: "#ffffff",
+  display: "flex",
+  flexDirection: "column",
+  gap: "20px",
+  padding: "20px",
+  [theme.breakpoints.up("md")]: {
+    flexDirection: "row",
+  },
+}));
 
-const RightContainer=styled(Stack)`
-margin-top:50px;`
+const LeftContainer = styled(Box)`
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const RightContainer = styled(Stack)(({ theme }) => ({
+  flex: 2,
+  marginTop: "20px",
+  [theme.breakpoints.up("md")]: {
+    marginTop: "0px",
+    paddingLeft: "20px",
+  },
+}));
 
 const DetailView = () => {
   const dispatch = useDispatch();
@@ -32,23 +53,16 @@ const DetailView = () => {
   return (
     <Component>
       {product && Object.keys(product).length > 0 && (
-        <Container spacing={2} direction={{ xs: "column", md: "row" }}>
-          <Box flex={1}>
+        <Container>
+          <LeftContainer>
             <ActionItem product={product} />
-          </Box>
-          <RightContainer flex={1}>
-            <Typography variant="h6">{product.title?.longTitle}</Typography>
-            <Typography style={{marginTop:5,color:'#878787', fontSize:14}}>8 Ratings & 1 Reviews
-            </Typography>
-            <Typography>
-                <Box component="span" style={{fontSize:28}}>₹{product.price.cost}</Box>&nbsp;&nbsp;&nbsp;
-                <Box component="span" style={{color:'#878787'}}><strike>{product.price.mrp}</strike></Box>&nbsp;
-                <Box component="span" style={{color:'#388E3C'}}>{product.price.discount}</Box>
-            </Typography>
-            </RightContainer>
+          </LeftContainer>
+          <RightContainer>
+            <ProductDetail product={product} />
+          </RightContainer>
         </Container>
       )}
-    </Component>
+    </Component> 
   );
 };
 
