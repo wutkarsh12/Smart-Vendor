@@ -7,7 +7,7 @@ const StyledBadge=styled(Badge)`
 margin-right:10px;
 color:#
 font-size:15px;
-color: #FF5B00`
+color: #FF5B00;`
 
 const SmallText =styled(Box)`
 font-size:14px;
@@ -17,8 +17,17 @@ font-size:14px;
 margin-top:10px;
 }`
 
+const ColumnText=styled(TableRow)`
+font-size:14px;
+vertical-align:baseline;
+&>td{
+font-size:14px;
+margin-top:10px;
+border:none;}
+`
+
 const ProductDetail=({product})=>{
-    const date=new Date(new Date().getTime()+(5*24*60*60+1000));
+    const date=new Date(new Date().getTime()+(5*24*60*60*1000));
     return (
         <>
         <Typography variant="h6">{product.title?.longTitle}</Typography>
@@ -40,22 +49,26 @@ const ProductDetail=({product})=>{
         </SmallText>
         <Table>
             <TableBody>
-                <TableRow>
+                <ColumnText>
                     <TableCell style={{color:'#878787'}}>Delivery</TableCell>
                     <TableCell style={{fontWeight:600}}>Delivery by {date.toDateString()}| ₹40</TableCell>
-                </TableRow>
-                <TableRow>
+                </ColumnText>
+                <ColumnText>
                     <TableCell style={{color:'#878787'}}>Warranty</TableCell>
                     <TableCell>No Warranty</TableCell>
-                </TableRow>
-                <TableRow>
+                </ColumnText>
+                <ColumnText>
                     <TableCell style={{color:'#878787'}}>Seller</TableCell>
                     <TableCell>
                         <Box component="span" style={{color:'#2874f0'}}>SuperComNet</Box>
                         <Typography>GST Invoice Available</Typography>
                         <Typography>View More Sellers starting from ₹{product.price.cost}</Typography>
                     </TableCell>
-                </TableRow>
+                </ColumnText>
+                <ColumnText>
+                    <TableCell style={{color:'#878787'}}>Description</TableCell>
+                    <TableCell>{product.description}</TableCell>
+                </ColumnText>
             </TableBody>
         </Table>
         </>   

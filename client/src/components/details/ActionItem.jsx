@@ -14,13 +14,18 @@ const Image=styled('img')({
     padding:'15px'
 });
 
-const StyledButton=styled(Button)`
-width:46%;
-height:50px;
-border-radius:2px;
-background-color:#ECC196;
-font-weight:bold;
-`
+const StyledButton=styled(Button)(({theme})=>({
+    width:'48%',
+    height:50,
+    backgroundColor:'#133e69',
+    borderRadius:2,
+    [theme.breakpoints.down('lg')]:{
+      width:'46%'
+  },
+    [theme.breakpoints.down('sm')]:{
+      width:'48%'
+    }
+  }));
 
 const ActionItem=({product})=>{
     return(

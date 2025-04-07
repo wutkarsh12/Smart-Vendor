@@ -37,10 +37,11 @@ const RightContainer = styled(Stack)(({ theme }) => ({
   },
 }));
 
+
 const DetailView = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const { loading, product } = useSelector((state) => state.getProductDetails);
+  const { product } = useSelector((state) => state.getProductDetails);
 
   useEffect(() => {
     if (!product || product?.id !== id) {

@@ -85,7 +85,7 @@ export const products = [
             discount: '40%'
         },
         quantity: 1,
-        description: '',
+        description: 'The Nova Professional NHP 8220 Hair Dryer is designed to give you salon-style results at home. With its powerful 1800W motor, multiple heat settings, and ergonomic design, this dryer ensures quick and efficient drying while protecting your hair from heat damage.',
         discount: 'From ₹499', 
         tagline: 'Kubra, Nova & more' 
     },
