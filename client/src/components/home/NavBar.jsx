@@ -6,7 +6,6 @@ const Component=styled(Box)(({theme})=>({
     display:'flex',
     margin:'55px 130px 0 130px',
     justifyContent:'space-between',
-    overflow:'hidden',
     [theme.breakpoints.down('lg')]:{
         margin:0
     }

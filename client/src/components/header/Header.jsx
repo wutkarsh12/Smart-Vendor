@@ -9,7 +9,7 @@ import {Menu} from '@mui/icons-material';
 const StyledHeader=styled(AppBar)`
 background:#ECC196;
 height:70px;
- overflow:hidden;
+ overflow:visible;
 `;
 const CustomButtonWrapper=styled(Box)(({theme})=>({
     margin:'0 5% 0 auto',
