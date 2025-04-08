@@ -50,7 +50,7 @@ const Search=()=>{
     }
     return(
         <SearchContainer>
-            <InputSearchBase placeholder='Search for products' onChange={(e)=>getText(e.target.value)}/>
+            <InputSearchBase placeholder='Search for products' onChange={(e)=>getText(e.target.value)} value={text}/>
             <SearchIconWrapper>
             <SearchIcon/>
             </SearchIconWrapper>
@@ -60,7 +60,7 @@ const Search=()=>{
                     {
                         products.filter(product=>product.title.longTitle.toLowerCase().includes(text.toLowerCase())).map(product=>(
                             <ListItem>
-                                <Link to={`/product/${product.id}`} style={{ textDecoration: 'none', color: '#212121', fontSize: 14 }}>
+                                <Link to={`/product/${product.id}`} onClick={()=>setText('')} style={{ textDecoration: 'none', color: 'inherit', fontSize: 14 }}>
                                     {product.title.longTitle}
                                 </Link>
                             </ListItem>
