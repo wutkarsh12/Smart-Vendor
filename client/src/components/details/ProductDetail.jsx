@@ -35,7 +35,7 @@ const ProductDetail=({product})=>{
         </Typography>
         <Typography>
             <Box component="span" style={{fontSize:28}}>₹{product.price.cost}</Box>&nbsp;&nbsp;&nbsp;
-            <Box component="span" style={{color:'#878787'}}><strike>{product.price.mrp}</strike></Box>&nbsp;
+            <Box component="span" style={{color:'#878787'}}><strike>₹{product.price.mrp}</strike></Box>&nbsp;
             <Box component="span" style={{color:'#388E3C'}}>{product.price.discount}</Box>
         </Typography>
         <Typography>Available Offers</Typography>

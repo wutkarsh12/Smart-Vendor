@@ -1,8 +1,11 @@
+import {useState} from 'react';
 import {Box,Button,styled} from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import FlashOnIcon from '@mui/icons-material/FlashOn';
 import {useNavigate} from 'react-router-dom';
 import {useDispatch} from 'react-redux';
+
+import { addToCart } from '../../redux/actions/cartAction';
 
 const Cart = ShoppingCartIcon;
 const Flash = FlashOnIcon;
@@ -31,8 +34,12 @@ const StyledButton=styled(Button)(({theme})=>({
 
 const ActionItem=({product})=>{
   const navigate=useNavigate();
+  const dispatch=useDispatch();
+  const [quantity,setQuantity]=useState(1);
+  const {id}=product;
 
   const addItemToCart=()=>{
+    dispatch(addToCart(id,quantity));
     navigate('/cart');
   }
     return(
