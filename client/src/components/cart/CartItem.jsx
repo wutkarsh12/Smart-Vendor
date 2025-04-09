@@ -1,5 +1,6 @@
 import {Typography,Box,styled,Button} from "@mui/material";
 import { addEllipsis } from "../../utils/common-utils";
+import ButtonGroup from "./ButtonGroup";
 
 const Component=styled(Box)`
 border-top:1px solid #f0f0f0;
@@ -24,8 +25,9 @@ const CartItem=({item})=>{
         <Component>
             <LeftComponent>
                 <img src={item.url} alt="product"/>
+                <ButtonGroup/>
             </LeftComponent>
-            <Box>
+            <Box style={{margin:20}}>
                 <Typography>{addEllipsis(item.title.longTitle)}</Typography>
                 <SmallText>Seller:RetailNet</SmallText>
             <Typography style={{margin:'20px 0'}}>
