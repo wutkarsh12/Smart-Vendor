@@ -4,12 +4,13 @@ import CartItem from './CartItem';
 import TotalView from './TotalView';
 import EmptyCart from './EmptyCart';
 
-const Container = styled(Box)`
-  display: flex;
-  padding: 30px 135px;
-  flex-wrap: wrap;
-  justify-content: space-between;
-`;
+const Component = styled(Box)(({ theme }) => ({
+  padding: '30px 135px',
+  display: 'flex',
+  [theme.breakpoints.down('sm')]: {
+    padding: '15px 0',
+  },
+}));
 
 const Header = styled(Box)`
   padding: 15px 24px;
@@ -33,10 +34,14 @@ const StyledButton = styled(Button)`
   border-radius: 2px;
 `;
 
-const LeftComponent = styled(Box)`
-  flex: 0.7;
-  min-width: 300px;
-`;
+const LeftComponent = styled(Box)(({theme})=>({
+    paddingRight:15,
+    flex: 0.7,
+    minWidth: 300,
+    [theme.breakpoints.down('sm')]:{
+        marginBottom:15
+    }
+}));
 
 const RightComponent = styled(Box)`
   flex: 0.3;
@@ -49,7 +54,7 @@ const Cart = () => {
   return (
     <>
       {cartItems.length ? (
-        <Container>
+        <Component container>
           <LeftComponent>
             <Header>
               <Typography>My Cart ({cartItems.length})</Typography>
@@ -64,7 +69,7 @@ const Cart = () => {
           <RightComponent>
             <TotalView cartItems={cartItems} />
           </RightComponent>
-        </Container>
+        </Component>
       ) : <EmptyCart/>
       }
     </>
