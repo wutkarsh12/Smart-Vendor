@@ -2,19 +2,25 @@ import {useState,useContext} from 'react';
 import {Dialog,Box,TextField,Typography,Button,styled} from '@mui/material';
 import {authenticateSignup,authenticateLogin} from '../../service/api';
 import {DataContext} from '../../context/DataProvider';
+import LogImage from '../../images/Log.png';
+
 
 const Component=styled(Box)`
 height:70vh;
 width:85vh;`;
 
-const Image=styled(Box)`
-background:#ECC196 url(https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/login_img_c4a81e.png) center 85% no-repeat;
-height:82%;
-width:28%;
-padding:45px 35px;
-&>p,&>h5{
-color:#FFFFFF;
-font-weight:600;}`;
+const Image = styled(Box)`
+  background: #ECC196 url(${LogImage}) center bottom no-repeat;
+  background-size: contain;
+  height: 82%;
+  width: 28%;
+  padding: 45px 35px;
+  & > p, & > h5 {
+    color: #FFFFFF;
+    font-weight: 600;
+  }
+`;
+
 
 const Wrapper=styled(Box)`
 display:flex;

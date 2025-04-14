@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import CartItem from './CartItem';
 import TotalView from './TotalView';
 import EmptyCart from './EmptyCart';
+import { useState } from 'react';
 
 const Component = styled(Box)(({ theme }) => ({
   padding: '30px 135px',
@@ -34,13 +35,13 @@ const StyledButton = styled(Button)`
   border-radius: 2px;
 `;
 
-const LeftComponent = styled(Box)(({theme})=>({
-    paddingRight:15,
-    flex: 0.7,
-    minWidth: 300,
-    [theme.breakpoints.down('sm')]:{
-        marginBottom:15
-    }
+const LeftComponent = styled(Box)(({ theme }) => ({
+  paddingRight: 15,
+  flex: 0.7,
+  minWidth: 300,
+  [theme.breakpoints.down('sm')]: {
+    marginBottom: 15,
+  },
 }));
 
 const RightComponent = styled(Box)`
@@ -50,6 +51,55 @@ const RightComponent = styled(Box)`
 
 const Cart = () => {
   const { cartItems } = useSelector(state => state.cart);
+  const [totalAmount, setTotalAmount] = useState(0);
+
+  const handlePlaceOrder = async () => {
+    try {
+      const res = await fetch("http://localhost:8000/order", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          amount: totalAmount * 100,
+          currency: "INR",
+        }),
+      });
+
+      const data = await res.json();
+      console.log("Order created:", data);
+
+      const options = {
+        key: "rzp_test_1thbED95P17pOS",
+        amount: data.amount,
+        currency: data.currency,
+        name: "SmartBuy",
+        description: "Smart Buy",
+        order_id: data.order_id,
+        handler: function (response) {
+          alert("Payment successful!");
+          console.log("Payment ID:", response.razorpay_payment_id);
+        },
+        prefill: {
+          name: "Smart Vendor",
+          email: "smartvendor@example.com",
+          contact: "9999999999",
+        },
+        notes: {
+          address: "Smart Vendor Corporate Office",
+        },
+        theme: {
+          color: "#528FF0",
+        },
+      };
+
+      const razorpay = new window.Razorpay(options);
+      razorpay.open();
+    } catch (err) {
+      console.error("Payment failed", err);
+      alert("Oops! Something went wrong.\nPayment Failed");
+    }
+  };
 
   return (
     <>
@@ -63,15 +113,16 @@ const Cart = () => {
               <CartItem item={item} key={item.id} />
             ))}
             <ButtonWrapper>
-              <StyledButton>Place Order</StyledButton>
+              <StyledButton onClick={handlePlaceOrder}>Place Order</StyledButton>
             </ButtonWrapper>
           </LeftComponent>
           <RightComponent>
-            <TotalView cartItems={cartItems} />
+            <TotalView cartItems={cartItems} onTotalCalculated={setTotalAmount} />
           </RightComponent>
         </Component>
-      ) : <EmptyCart/>
-      }
+      ) : (
+        <EmptyCart />
+      )}
     </>
   );
 };
