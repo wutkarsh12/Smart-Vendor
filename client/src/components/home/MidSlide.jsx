@@ -1,5 +1,5 @@
 import { Box,styled } from '@mui/material';
- 
+import logImage from '../../images/spaceship.jpg';
  import Slide from  './Slide';
  
  const Component = styled(Box)`
@@ -26,7 +26,7 @@ import { Box,styled } from '@mui/material';
  
  
  const MidSlide = ({ products, title, timer}) => {
-     const adURL = 'https://rukminim1.flixcart.com/flap/464/708/image/633789f7def60050.jpg?q=70';
+     const adURL = logImage;
  
      return (
          <Component>

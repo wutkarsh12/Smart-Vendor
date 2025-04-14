@@ -14,7 +14,6 @@ const Image = styled('img')(({ theme }) => ({
 
 const responsive = {
     superLargeDesktop: {
-      // the naming can be any, depends on you.
       breakpoint: { max: 4000, min: 3000 },
       items: 1
     },
@@ -50,7 +49,7 @@ const Banner=()=>{
                 bannerData.map(data =>(
                     <Image src={data.url} alt="banner"/>
                 ))
-}
+            }
         </Carousel>
     )
 }

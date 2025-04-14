@@ -1,3 +1,5 @@
+import saleImage from '../images/sale.jpg';
+
 export const navData = [
     { url: 'https://rukminim1.flixcart.com/flap/128/128/image/f15c02bfeb02d15d.png?q=100', text: 'Top Offers' },
     { url: 'https://rukminim1.flixcart.com/flap/128/128/image/29327f40e9c4d26b.png?q=100', text: 'Grocery' },
@@ -11,7 +13,7 @@ export const navData = [
 ];
 
 export const bannerData = [
-    { id: 1, url: 'https://rukminim1.flixcart.com/flap/3376/560/image/d117a62eb5fbb8e1.jpg?q=50' },
+    { id: 1, url: saleImage  },
     { id: 2, url: 'https://rukminim1.flixcart.com/flap/3376/560/image/57267a180af306fe.jpg?q=50' },
     { id: 3, url: 'https://img.freepik.com/free-vector/flat-design-electronics-store-facebook-cover_23-2151098080.jpg?t=st=1740297723~exp=1740301323~hmac=df160dafff940e9ca34a2a1c0155ae0c09577b599f11a7eccd0b2148311f9c47&w=1380' },
     { id: 4, url: 'https://img.freepik.com/free-vector/hand-drawn-grocery-store-sale-banner_23-2151053939.jpg?t=st=1740297788~exp=1740301388~hmac=2de17f5d19a37ecbd8101e53f4c8413e59a9f5ce5dafe66d2e4935004b347dd0&w=1800' }
