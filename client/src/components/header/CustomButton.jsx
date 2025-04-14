@@ -51,15 +51,13 @@ const CustomButton=()=>{
         <Wrapper>
             {
                 account?<Profile account={account} setAccount={setAccount}/>:
-                <LoginButton variant="contained" onClick={()=>openDialog()}>Login</LoginButton>
+                <LoginButton variant="contained" onClick={()=>openDialog()} style={{marginLeft:10,marginRight:10}}>Login</LoginButton>
             }
-            <Typography style={{marginTop: 4, marginLeft:8,marginRight: 5, width: 135}}>Become a Seller</Typography>
-            <Typography style={{marginTop: 4,marginRight:18,marginLeft:5}}>More</Typography>
             <Container to="/cart">
             <Badge badgeContent={cartItems?.length} color="secondary">
                 <ShoppingCart/>
             </Badge>
-                <Typography style={{marginLeft:10}}>Cart</Typography>
+                <Typography style={{marginLeft:10,marginRight:10}}>Cart</Typography>
             </Container>
             <LoginDialog open={open} setOpen={setOpen}/>
         </Wrapper>

@@ -1,5 +1,5 @@
 import { Box,styled } from '@mui/material';
-import logImage from '../../images/spaceship.jpg';
+import logImage from '../../images/spaceship.png';
  import Slide from  './Slide';
  
  const Component = styled(Box)`
@@ -30,16 +30,18 @@ import logImage from '../../images/spaceship.jpg';
  
      return (
          <Component>
-             <LeftComponent>
+            <LeftComponent>
                  <Slide 
                      products={products} 
                      title={title} 
                      timer={timer}
                  />
-             </LeftComponent>
-             <RightComponent>
-                 <img src={adURL} alt="Advertisement" style={{width: 217}}/>
-             </RightComponent>
+            </LeftComponent>
+            <RightComponent>
+            <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100%" }}>
+                <img src={adURL} alt="Advertisement" style={{ width: 217, height: 250 }} />
+            </div>
+            </RightComponent>
          </Component>
      )
  }
